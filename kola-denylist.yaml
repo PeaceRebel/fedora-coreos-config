@@ -16,3 +16,7 @@
     - ppc64le
   streams:
     - rawhide
+
+# This fails because ignition-integration is in fedora repo yet.
+- pattern: ext.config.content-origins
+  snooze: 2026-05-02
