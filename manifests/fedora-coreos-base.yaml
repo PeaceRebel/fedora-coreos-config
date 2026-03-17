@@ -34,7 +34,14 @@ conditional-include:
           setsebool -P -N container_use_cephfs on  # RHBZ#1692369
           setsebool -P -N virt_use_samba on  # RHBZ#1754825
           rm -f /etc/selinux/targeted/semanage.*.LOCK
-
+  - if: id == "fedora"
+    include:
+      packages:
+        - ignition-integration
+  - if: id != "fedora"
+    include:
+      ostree-overlayfs:
+        - overlay/06ignition-old
 
 # Be minimal
 recommends: false
