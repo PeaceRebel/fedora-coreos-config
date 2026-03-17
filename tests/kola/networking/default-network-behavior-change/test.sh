@@ -90,6 +90,10 @@ fi
 # Execute nm-initrd-generator against our default kargs (defined by
 # afterburn drop in) to get the generated initrd network config.
 DEFAULT_KARGS_FILE=/usr/lib/dracut/modules.d/35coreos-network/50-afterburn-network-kargs-default.conf
+if [ "$ID" == "fedora" ]; then
+    DEFAULT_KARGS_FILE=/usr/lib/dracut/modules.d/35ignition-network/50-afterburn-network-kargs-default.conf
+fi
+
 source <(grep -o 'AFTERBURN_NETWORK_KARGS_DEFAULT=.*' $DEFAULT_KARGS_FILE)
 tmpdir=$(mktemp -d)
 /usr/libexec/nm-initrd-generator \
